@@ -1,4 +1,5 @@
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ class Main{
         Scanner sc = new Scanner(System.in);
         try {
             String s = readFromFile("input.txt");
-            System.out.println(calculator(s));
+            writeToFile(calculator(s)+"");
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
@@ -37,6 +38,14 @@ class Main{
         while ((c=reader.read())!=-1){
             s+=(char)c;
         }
+        reader.close();
         return s;
+    }
+
+    public static void writeToFile(String s) throws IOException{
+        FileWriter writer = new FileWriter("output.txt");
+        writer.write(s);
+        writer.append('\n');
+        writer.flush();
     }
 }
